@@ -70,10 +70,26 @@ subtitle-style --directory ./input --output ./output
 #### Available Styles
 
 - `clean` - Remove formatting tags, normalize whitespace, fix common errors (default)
+- `fansub` - Anime fansub style (ellipsis, em dash, smart quotes, preserves honorifics)
 - `uppercase` - Convert all text to UPPERCASE
 - `lowercase` - Convert all text to lowercase
 - `title` - Convert All Text To Title Case
 - `sentence` - Convert text to Sentence case
+
+##### Fansub Style Details
+
+The `fansub` style implements anime fansubbing standards based on groups like Good Job! Media, MTBB, Commie, and SubsPlus:
+- Replaces `...` with proper ellipsis `…`
+- Replaces `--` with em dash `—`
+- Uses smart quotes `" "` and `' '`
+- Preserves Japanese honorifics (-san, -kun, -chan, -sama, -sensei)
+- Applies sentence case while preserving proper nouns and names
+- Maintains proper spacing around punctuation
+
+```bash
+# Apply fansub style to anime subtitles
+subtitle-style anime.srt --style fansub --output anime-styled.srt
+```
 
 #### Additional Options
 

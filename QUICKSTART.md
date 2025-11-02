@@ -21,6 +21,7 @@ pip install -e .
 | Style | Effect | Example |
 |-------|--------|---------|
 | `clean` | Remove tags, fix spacing (default) | Hello world |
+| `fansub` | Anime fansub (… — " " honorifics) | "Wait… Naruto-kun said that." |
 | `uppercase` | ALL CAPS | HELLO WORLD |
 | `lowercase` | all lowercase | hello world |
 | `title` | Title Case | Hello World |
@@ -28,6 +29,9 @@ pip install -e .
 
 ```bash
 subtitle-style file.srt --style uppercase
+
+# Anime fansub style for preserving honorifics
+subtitle-style anime.srt --style fansub
 ```
 
 ## Common Options

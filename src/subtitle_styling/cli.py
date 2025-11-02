@@ -117,6 +117,7 @@ Examples:
 
 Available styles:
   clean      - Just clean up formatting and fix common errors (default)
+  fansub     - Anime fansub style (ellipsis, em dash, smart quotes, sentence case)
   uppercase  - Convert all text to UPPERCASE
   lowercase  - Convert all text to lowercase
   title      - Convert All Text To Title Case
@@ -144,7 +145,7 @@ Available styles:
     # Style options
     parser.add_argument(
         '-s', '--style',
-        choices=['clean', 'uppercase', 'lowercase', 'title', 'sentence'],
+        choices=['clean', 'fansub', 'uppercase', 'lowercase', 'title', 'sentence'],
         default='clean',
         help='Style guide to apply (default: clean)'
     )

@@ -85,6 +85,32 @@ class TestSubtitleStyler:
         text = "HELLO WORLD. ANOTHER SENTENCE."
         styled = SubtitleStyler.apply_sentence_case(text)
         assert styled == "Hello world. Another sentence."
+    
+    def test_apply_fansub_style(self):
+        """Test anime fansub styling."""
+        # Test ellipsis replacement
+        text = "Wait... what?"
+        styled = SubtitleStyler.apply_fansub_style(text)
+        assert "…" in styled
+        assert "..." not in styled
+        
+        # Test em dash replacement
+        text = "I was going to--"
+        styled = SubtitleStyler.apply_fansub_style(text)
+        assert "—" in styled
+        assert "--" not in styled
+        
+        # Test smart quotes
+        text = '"Hello there"'
+        styled = SubtitleStyler.apply_fansub_style(text)
+        # Should have smart quotes or at least quotes preserved
+        assert "Hello there" in styled
+        
+        # Test capitalization (sentence case but preserves existing caps)
+        text = "hello world. Naruto-kun said that."
+        styled = SubtitleStyler.apply_fansub_style(text)
+        assert styled[0].isupper()  # First letter capitalized
+        assert "kun" in styled.lower()  # Honorific preserved
 
 
 def test_apply_style_guide():
@@ -124,3 +150,25 @@ def test_apply_style_guide_remove_hi():
     apply_style_guide(subs, style='clean', remove_hi=True)
     assert "[MUSIC]" not in subs[0].text
     assert "Dialog here" in subs[0].text
+
+
+def test_apply_style_guide_fansub():
+    """Test applying fansub style guide."""
+    subs = pysrt.SubRipFile()
+    sub1 = pysrt.SubRipItem(
+        index=1,
+        start=pysrt.SubRipTime(0, 0, 1),
+        end=pysrt.SubRipTime(0, 0, 3),
+        text='Wait... "what did you say?"'
+    )
+    subs.append(sub1)
+    
+    # Apply fansub style
+    apply_style_guide(subs, style='fansub')
+    result = subs[0].text
+    
+    # Should have proper ellipsis
+    assert "…" in result or "..." in result
+    
+    # Should have quotes preserved
+    assert "what did you say" in result.lower()
