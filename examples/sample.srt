@@ -1,0 +1,20 @@
+1
+00:00:01,000 --> 00:00:03,000
+Hello, this is a test subtitle.
+
+2
+00:00:03,500 --> 00:00:06,000
+<i>This has some formatting tags</i> to remove.
+
+3
+00:00:06,500 --> 00:00:09,000
+[MUSIC PLAYING] Someone is speaking here.
+
+4
+00:00:09,500 --> 00:00:12,000
+This has  multiple   spaces    to normalize.
+
+5
+00:00:12,500 --> 00:00:15,000
+this sentence needs.proper capitalization!and spacing.
+

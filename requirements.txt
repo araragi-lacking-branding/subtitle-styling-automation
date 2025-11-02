@@ -1,0 +1,7 @@
+# Core dependencies
+pysrt>=1.1.2  # SRT subtitle parsing and manipulation
+chardet>=5.0.0  # Character encoding detection
+pysubs2>=1.6.0  # ASS/SSA subtitle format support
+
+# Optional: for extracting subtitles from video files
+# ffmpeg-python>=0.2.0  # FFmpeg wrapper (requires ffmpeg installed)
