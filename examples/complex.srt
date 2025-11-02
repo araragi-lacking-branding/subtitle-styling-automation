@@ -1,0 +1,40 @@
+1
+00:00:01,000 --> 00:00:04,000
+<font color="#FFFF00"><b>PREVIOUSLY ON...</b></font>
+
+2
+00:00:04,500 --> 00:00:07,000
+(dramatic music playing)
+The hero enters the scene.
+
+3
+00:00:07,500 --> 00:00:10,000
+[DOOR OPENS]\NHello?Is anyone there?
+
+4
+00:00:10,500 --> 00:00:13,000
+<i>Internal monologue goes here</i>
+
+5
+00:00:13,500 --> 00:00:16,000
+THIS IS   IN   ALL   CAPS   WITH    SPACING   ISSUES
+
+6
+00:00:16,500 --> 00:00:19,000
+this.needs.proper!punctuation?and spacing.
+
+7
+00:00:19,500 --> 00:00:22,000
+Normal dialogue with {\\i1}inline formatting{\\i0} tags.
+
+8
+00:00:22,500 --> 00:00:25,000
+♪ [SINGING] La la la ♪
+
+9
+00:00:25,500 --> 00:00:28,000
+Multiple...periods...and   spaces  between   words!
+
+10
+00:00:28,500 --> 00:00:31,000
+<font face="Arial" size="14" color="#00FF00">Styled text</font> mixed with regular text.
