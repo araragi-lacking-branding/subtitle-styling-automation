@@ -46,3 +46,8 @@ htmlcov/
 
 # Logs
 *.log
+
+# Temporary subtitle outputs (styled versions)
+*.styled.srt
+*.clean.srt
+*.nohi.srt
