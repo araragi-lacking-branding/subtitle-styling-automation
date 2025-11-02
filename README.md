@@ -1,16 +1,18 @@
 # Subtitle Styling Automation
 
-A Python tool to automatically scan directories for subtitle files, extract them, and modify their styling with basic text cleanup. This tool focuses on text-based subtitle formats (starting with SRT) and is designed to be OS-agnostic.
+A Python tool to automatically scan directories for subtitle files, extract them, and modify their styling with professional text cleanup and formatting. Supports both SRT and ASS (Advanced SubStation Alpha) formats with fansub styling templates.
 
 ## Features
 
 - 📁 **Directory Scanning**: Recursively scan directories for subtitle files
 - 🧹 **Text Cleaning**: Remove formatting tags, normalize whitespace, fix common errors
-- 🎨 **Style Guides**: Apply various text styles (uppercase, lowercase, title case, sentence case)
+- 🎨 **Style Guides**: Apply various text styles (fansub, uppercase, lowercase, title case, sentence case)
+- 🎬 **ASS Format Support**: Generate professionally styled ASS subtitles with fansub templates (GJM, MTBB, Commie, SubsPlus)
 - ♿ **Accessibility**: Remove hearing impaired annotations (optional)
 - 🌍 **Encoding Support**: Automatic encoding detection for input files
 - 💻 **CLI Interface**: Easy-to-use command-line interface
 - 🔧 **OS Agnostic**: Works on Windows, macOS, and Linux
+- 📐 **Professional Typography**: Smart quotes, proper ellipsis, em dashes
 
 ## Installation
 
@@ -33,6 +35,7 @@ pip install -e .
 - Python 3.7 or higher
 - pysrt >= 1.1.2
 - chardet >= 5.0.0
+- pysubs2 >= 1.6.0
 
 ## Usage
 
@@ -41,11 +44,14 @@ pip install -e .
 #### Process a Single File
 
 ```bash
-# Clean up a subtitle file (default behavior)
+# Clean up a subtitle file (default behavior - SRT output)
 subtitle-style input.srt
 
-# Apply uppercase styling
-subtitle-style input.srt --style uppercase
+# Apply fansub styling and generate ASS with GJM template
+subtitle-style anime.srt --style fansub --format ass --ass-style gjm
+
+# Generate both SRT and ASS formats
+subtitle-style input.srt --format both --ass-style mtbb
 
 # Remove hearing impaired annotations
 subtitle-style input.srt --remove-hi
@@ -91,6 +97,37 @@ The `fansub` style implements anime fansubbing standards based on groups like Go
 subtitle-style anime.srt --style fansub --output anime-styled.srt
 ```
 
+### ASS Format Support
+
+Generate Advanced SubStation Alpha (.ass) subtitles with professional fansub styling:
+
+```bash
+# Generate ASS with GJM (Good Job! Media) styling
+subtitle-style anime.srt --format ass --ass-style gjm
+
+# Generate both SRT and ASS (MTBB style)
+subtitle-style anime.srt --format both --ass-style mtbb
+
+# Combine fansub text styling with Commie visual styling
+subtitle-style anime.srt --style fansub --format ass --ass-style commie
+```
+
+#### Available ASS Styles
+
+- `gjm` - Good Job! Media (Gandhi Sans, modern clean look)
+- `mtbb` - MTBB (Fontin Sans, minimal professional)
+- `commie` - Commie (Cronos Pro, bold high-contrast)
+- `subsplus` - SubsPlus (Arial, standard professional)
+- `default` - Basic ASS styling (Arial)
+
+Each style includes professionally tuned:
+- Font family and size (optimized for 1080p)
+- Colors (white text with appropriately colored outlines)
+- Outline thickness and shadow depth
+- Margins and positioning
+
+**See [docs/ASS_FORMAT.md](docs/ASS_FORMAT.md) for detailed documentation.**
+
 #### Additional Options
 
 ```bash
@@ -113,15 +150,23 @@ subtitle-style --directory ./input \
 ```python
 from subtitle_styling.parser import SubtitleFile, scan_subtitle_files
 from subtitle_styling.styler import apply_style_guide
+from subtitle_styling.ass_converter import convert_srt_to_ass, get_available_styles
 
 # Load a subtitle file
 subtitle = SubtitleFile('input.srt')
 
 # Apply style guide
-apply_style_guide(subtitle.subtitles, style='clean', remove_hi=True)
+apply_style_guide(subtitle.subtitles, style='fansub', remove_hi=True)
 
-# Save the modified file
+# Save as SRT
 subtitle.save('output.srt')
+
+# Convert to ASS with GJM styling
+convert_srt_to_ass('output.srt', 'output.ass', style_name='gjm')
+
+# List available ASS styles
+styles = get_available_styles()
+# ['gjm', 'mtbb', 'commie', 'subsplus', 'default']
 
 # Scan directory for subtitle files
 files = scan_subtitle_files('./subtitles', extensions=['.srt'])

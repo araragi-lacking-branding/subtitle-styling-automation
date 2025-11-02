@@ -21,6 +21,7 @@ setup(
     install_requires=[
         "pysrt>=1.1.2",
         "chardet>=5.0.0",
+        "pysubs2>=1.6.0",
     ],
     entry_points={
         "console_scripts": [
