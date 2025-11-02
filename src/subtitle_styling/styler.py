@@ -76,6 +76,9 @@ class SubtitleCleaner:
         # Remove [sound effects] and (descriptions)
         text = re.sub(r'\[.*?\]', '', text)
         text = re.sub(r'\(.*?\)', '', text)
+        # Clean up extra whitespace left after removal
+        text = re.sub(r'^\s+', '', text)  # Remove leading whitespace
+        text = re.sub(r'\s+$', '', text)  # Remove trailing whitespace
         return text
     
     @classmethod
@@ -154,7 +157,8 @@ class SubtitleStyler:
         for i, part in enumerate(sentences):
             if i % 2 == 0 and part:  # Text parts
                 # Capitalize first letter, lowercase rest
-                part = part[0].upper() + part[1:].lower() if part else part
+                if len(part) > 0:
+                    part = part[0].upper() + part[1:].lower()
             result.append(part)
         
         return ''.join(result)

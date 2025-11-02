@@ -46,11 +46,11 @@ class TestSubtitleCleaner:
         """Test removing hearing impaired annotations."""
         text = "[MUSIC PLAYING] Dialog here"
         cleaned = SubtitleCleaner.remove_hearing_impaired(text)
-        assert cleaned == " Dialog here"
+        assert cleaned == "Dialog here"
         
         text = "(door slams) More dialog"
         cleaned = SubtitleCleaner.remove_hearing_impaired(text)
-        assert cleaned == " More dialog"
+        assert cleaned == "More dialog"
     
     def test_clean_all(self):
         """Test applying all cleaning operations."""
